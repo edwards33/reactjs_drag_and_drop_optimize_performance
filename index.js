@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import styled from 'styled-components';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import initData from './data';
-import Column from './column'
+import TasksList from './taskslist'
 
 const Container = styled.div`
   display: flex;
@@ -106,9 +106,15 @@ class App extends React.Component {
               {
                 this.state.columnOrder.map((columnID, index) => {
                   const column = this.state.columns[columnID];
-                  const tasks = column.taskIds.map(taskID => this.state.tasks[taskID]);
 
-                  return <Column key={column.id} column={column} tasks={tasks} index={index} />;
+                  return (
+                    <TasksList
+                      key={column.id}
+                      column={column}
+                      taskMap={this.state.tasks}
+                      index={index}
+                    />
+                  );
                 })
               }
               {provided.placeholder}

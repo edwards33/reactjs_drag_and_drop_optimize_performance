@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
-import Task from './task';
+import InnerList from './innerlist'
 
 const MARGIN_PADDING = 10;
 const BORDER = 1;
@@ -52,7 +52,7 @@ export default class Column extends React.Component {
                   ref={provided.innerRef}
                   {...provided.droppableProps}
                 >
-                  {this.props.tasks.map((task, index) => <Task key={task.id} task={task} index={index} />)}
+                  <InnerList tasks={this.props.tasks} />
                   {provided.placeholder}
                 </TaskList>
               )}
